@@ -1,6 +1,20 @@
+import { useState } from "react";
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 
 export default function Login() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  console.log(email, password);
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+    handleLogin()
+
+  }
+  const handleLogin=(e)=>{
+    if(email===process.env.REACT_APP_KULLANICI_ADI && password===process.env.REACT_APP_SIFRE){
+      
+    }
+  }
   return (
     <div>
       <Container>
@@ -10,15 +24,16 @@ export default function Login() {
             <Card className="shadow">
               <Card.Body>
                 <div className="mb-3 mt-md-4">
-                  <h2 className="fw-bold mb-2 text-uppercase ">PizzaLand</h2>
+                  <h2 className="fw-bold mb-2 text-uppercase ">Delicious</h2>
                   <p className=" mb-5">Please enter your login and password!</p>
                   <div className="mb-3">
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className="text-center">
                           Email address
                         </Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Control type="email" placeholder="Enter email"
+                        required onChange={(e)=>setEmail(e.target.value)} />
                       </Form.Group>
 
                       <Form.Group
@@ -26,7 +41,8 @@ export default function Login() {
                         controlId="formBasicPassword"
                       >
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control type="password" placeholder="Password"
+                        required onChange={(e)=>setPassword(e.target.value)}/>
                       </Form.Group>
                       <Form.Group
                         className="mb-3"
@@ -39,7 +55,8 @@ export default function Login() {
                         </p>
                       </Form.Group>
                       <div className="d-grid">
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary" type="submit"
+                        onClick={handleLogin}>
                           Login
                         </Button>
                       </div>
