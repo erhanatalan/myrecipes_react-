@@ -1,18 +1,27 @@
 import { useState } from "react";
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
+import { Navigate } from "react-router-dom";
+import data from "../../router/Data";
 
-export default function Login() {
+const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  console.log(email, password);
+  const [datax, setDatax] = useState(data[0].isSigned)
+  console.log(datax);
   const handleSubmit=(e)=>{
     e.preventDefault()
     handleLogin()
 
+  
   }
   const handleLogin=(e)=>{
-    if(email===process.env.REACT_APP_KULLANICI_ADI && password===process.env.REACT_APP_SIFRE){
-      
+    console.log(email, password);
+    if(email==process.env.REACT_APP_KULLANICI_ADI && password==process.env.REACT_APP_SIFRE){
+      console.log('1',email, password, data[0].isSigned)
+      return setDatax(true)
+    }else{
+      console.log('2',email, password, data[0].isSigned)
+      return setDatax(false)
     }
   }
   return (
@@ -35,7 +44,6 @@ export default function Login() {
                         <Form.Control type="email" placeholder="Enter email"
                         required onChange={(e)=>setEmail(e.target.value)} />
                       </Form.Group>
-
                       <Form.Group
                         className="mb-3"
                         controlId="formBasicPassword"
@@ -78,4 +86,5 @@ export default function Login() {
       </Container>
     </div>
   );
-}
+};
+export default Login;

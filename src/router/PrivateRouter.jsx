@@ -1,13 +1,9 @@
 import { Navigate, Outlet } from "react-router-dom";
-
+// import NotFound from "../pages/notFound/NotFound";
+import Data from "./Data";
 
 const PrivateRouter = () => {
-    const isSigned = false
-  return (
-    <div>
-        {isSigned ? <Outlet/> : <Navigate to="/login"/>}
-    </div>
-  )
+  return <>{Data[0].isSigned ? <Outlet/> : <Navigate to="/login"/>}</>
 }
 
 export default PrivateRouter;
